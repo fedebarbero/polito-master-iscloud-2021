@@ -34,9 +34,9 @@ destroy-main:
 	cd `pwd`/terraform/ && $(TERRAFORMDESTROY) -var-file ../variables/terraform.tfvars
 
 destroy-backend:
-	cd `pwd`/terraform-init-backend/ && $(TERRAFORMDESTROY) -var-file ../variables/terraform.tfvars
+	cd `pwd`/terraform-init-backend/ && $(TERRAFORMDESTROY)
 
-destroy-all: destroy-main destroy-backed
+destroy-all: destroy-main destroy-backend clean-all
 
 fmt:
 	cd `pwd`/terraform-init-backend/ && $(TERRAFORMFMT)

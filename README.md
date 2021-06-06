@@ -34,6 +34,46 @@ There is a Makefile that helps deploying the infrastructure.
     - Change region in provider configuration
     - terraform/02-data-layer.tf -> bucket resource for alb logs bucket policy must be changed according to AWS documentation for Log delivery
 - Given the fact that the installation script provided by the original [training workshop](https://ha-webapp.workshop.aws/) is not working anymore, we replaced it with a docker based version for simplicity.
+
+
+## Explanation of the solution
+
+This is a Terraform 0.15 implementation of the architecture described in this [training workshop](https://ha-webapp.workshop.aws/). A Makefile orchestrates terraform commands to create, update, destroy all infrastructure.
+
+
+Login to your AWS Account through federation -- You can skip it if in Cloud9 or you configured your AWS cli for static credentials
+```bash
+make init
+```
+
+Initializes AWS resources in the account used by the main terraform module to handle concurrency and state persistance. It implements design available here: https://www.terraform.io/docs/language/settings/backends/s3.html
+
+```bash
+make init-backend
+```
+Initializes main terraform module by downloading dependencies and initializing the backend
+
+```bash
+make init-main
+```
+
+Triggers a plan phase with output saved to stage directory. Plan is then applied. This is the step that actually creates solution resources. In the output 
+
+```bash
+make apply
+```
+
+Destroy backend resources
+
+```bash
+make destroy-main
+```
+
+Destroy created resources from main module
+
+```bash
+make destroy-backend
+```
  
 # Author
 

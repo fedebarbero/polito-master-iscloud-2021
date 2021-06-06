@@ -11,13 +11,15 @@ provider "aws" {
   region = "eu-west-1"
 }
 
-resource "aws_s3_bucket" "terrafor-bucket" {
+resource "aws_s3_bucket" "terraform-bucket" {
   bucket = "terraform-aws-backend-f2awcwvkfb"
   acl    = "private"
 
   versioning {
     enabled = true
   }
+
+  force_destroy = true
 
   server_side_encryption_configuration {
     rule {

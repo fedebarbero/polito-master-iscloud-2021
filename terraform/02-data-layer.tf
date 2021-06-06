@@ -37,8 +37,13 @@ module "db" {
   db_cluster_parameter_group_name = aws_rds_cluster_parameter_group.default.name
 }
 
+resource "random_pet" "dbpassword_pet" {
+
+}
+
 resource "aws_secretsmanager_secret" "db-master-password" {
-  name = "rds-master-password"
+  name                    = "rds-master-password-${random_pet.dbpassword_pet.id}"
+  recovery_window_in_days = 0
 }
 
 resource "aws_secretsmanager_secret_version" "db-master-password-value" {
