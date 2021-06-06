@@ -31,10 +31,10 @@ clean-all:
 	find `pwd` -type f -iname ".terraform.lock.hcl" -delete
 
 destroy-main:
-	cd `pwd`/terraform/ && $(TERRAFORMDESTROY)
+	cd `pwd`/terraform/ && $(TERRAFORMDESTROY) -var-file ../variables/terraform.tfvars
 
 destroy-backend:
-	cd `pwd`/terraform-init-backend/ && $(TERRAFORMDESTROY)
+	cd `pwd`/terraform-init-backend/ && $(TERRAFORMDESTROY) -var-file ../variables/terraform.tfvars
 
 destroy-all: destroy-main destroy-backed
 

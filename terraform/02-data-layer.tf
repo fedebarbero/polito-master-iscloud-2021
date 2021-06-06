@@ -31,6 +31,7 @@ module "db" {
   storage_encrypted   = true
   apply_immediately   = true
   monitoring_interval = 10
+  skip_final_snapshot = true
 
   db_parameter_group_name         = aws_db_parameter_group.default.name
   db_cluster_parameter_group_name = aws_rds_cluster_parameter_group.default.name
@@ -97,6 +98,7 @@ resource "aws_s3_bucket" "alb_access_log" {
       }
     }
   }
+  force_destroy = true
 
   policy = <<EOF
 {
