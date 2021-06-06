@@ -22,19 +22,19 @@ resource "aws_s3_bucket" "terrafor-bucket" {
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
-        sse_algorithm     = "AES256"
+        sse_algorithm = "AES256"
       }
     }
   }
   tags = {
-    Name        = "terraform-aws-backend-f2awcwvKFb"
+    Name = "terraform-aws-backend-f2awcwvKFb"
   }
 }
 
 resource "aws_dynamodb_table" "terraform-dynamodb-table" {
-  name           = "terraform-aws-backend-f2awcwvkfb"
-  billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "LockID"
+  name         = "terraform-aws-backend-f2awcwvkfb"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "LockID"
 
   attribute {
     name = "LockID"
@@ -42,6 +42,6 @@ resource "aws_dynamodb_table" "terraform-dynamodb-table" {
   }
 
   tags = {
-    Name        = "terraform-aws-backend-f2awcwvKFb"
+    Name = "terraform-aws-backend-f2awcwvKFb"
   }
 }

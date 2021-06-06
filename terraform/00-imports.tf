@@ -10,11 +10,20 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.0"
+      version = "~> 3.38"
     }
+    random = {
+      source = "hashicorp/random"
+    }
+    // template = {
+    //   source = "hashicorp/template"
+    // }
   }
 }
 
 provider "aws" {
   region = "eu-west-1"
+  default_tags {
+    tags = var.general_tags
+  }
 }
